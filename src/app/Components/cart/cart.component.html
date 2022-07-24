@@ -1,0 +1,46 @@
+<div class="row p-4" *ngIf="cartList.length">
+    <div class="col-7">
+        <div class="row">
+            <div class="col-12 p-3" *ngFor="let item of cartList; let i = index">
+                <div class="d-flex justify-content-center">
+                    <div class="mx-2">
+                        <img src="{{ item.url }}" />
+                    </div>
+                    <div class="my-auto">
+                        <h6>{{ item.name }}</h6>
+                        <h6>{{ item.price | currency: "USD" }}</h6>
+                        <input type="number" value="{{ item.quantity }}" min="0" max="10"
+                            (change)="changeQuantity(item, $event)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="price text-dark text-center">
+            <h1>Total:{{ Price | currency: "USD" }}</h1>
+        </div>
+    </div>
+    <div class="col-5">
+        <form #form="ngForm" (ngSubmit)="submitForm()">
+            <p>Full Name</p>
+            <input type="text" name="fName" required minlength="3" maxlength="32" placeholder="(minmum 3 characters)"
+                [(ngModel)]="fName" (ngModelChange)="fNameChanged()">
+            <br />
+            <p>Address</p>
+            <input type="text" name="address" required minlength="6" maxlength="32" placeholder="(minmum 6 characters)"
+                [(ngModel)]="address" (ngModelChange)="addressChanged()">
+            <br />
+            <p>Credit card number</p>
+            <input type="text" name="card" required minlength="16" maxlength="16" placeholder="(16-digit number)"
+                [(ngModel)]="card" (ngModelChange)="cardChanged()">
+            <br />
+            <span>we'll never share your payment details with anyone else </span>
+            <br />
+            <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+<div *ngIf="!cartList.length">
+    <div class="empty-cart-message">
+        <h1>The cart is empty!</h1>
+    </div>
+</div>

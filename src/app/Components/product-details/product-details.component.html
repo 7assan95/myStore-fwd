@@ -1,0 +1,19 @@
+<div class="detail-container">
+  <div>
+    <img src="{{ product.url }}" />
+  </div>
+  <div class=" detail-item">
+    <h6>{{ product.name }}</h6>
+    <h6>{{ product.price | currency: "USD" }}</h6>
+    <h6>{{ product.description }}</h6>
+    <select class="select-input" [(ngModel)]="selected">
+      <option *ngFor="let o of options">{{ o }}</option>
+    </select>
+    <br />
+    <button type="button" class="btn btn-info" (click)="addToCart()">Add to cart</button>
+    <br />
+    <a (click)="onBack()" class="link-info text-decoration-none back-link">
+      <fa-icon icon="arrow-left"></fa-icon> Back to product list
+    </a>
+  </div>
+</div>
