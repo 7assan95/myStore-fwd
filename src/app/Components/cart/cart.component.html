@@ -31,7 +31,7 @@
             <br />
             <p>Credit card number</p>
             <input type="text" name="card" required minlength="16" maxlength="16" placeholder="(16-digit number)"
-                [(ngModel)]="card" (ngModelChange)="cardChanged()">
+                [(ngModel)]="card" (ngModelChange)="cardChanged()" (keypress)="checkNumber($event)"/>
             <br />
             <span>we'll never share your payment details with anyone else </span>
             <br />
